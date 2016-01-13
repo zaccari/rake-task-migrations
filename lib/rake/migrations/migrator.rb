@@ -8,12 +8,9 @@ class Rake::Migrations::Migrator
     end
   end
 
+  # tasks to run every time + tasks that haven't been run yet
   def self.get_task_migrations
     ['app:version']
-  end
-
-  def self.invoke(task)
-    Rake::Task[task].invoke
   end
 
   def self.manifest
@@ -22,6 +19,20 @@ class Rake::Migrations::Migrator
 
   def self.config
     @config ||= Rake::Migrations::Configuration.load
+  end
+
+  def self.invoke(task)
+    new(task).invoke
+  end
+
+  attr_reader :task
+
+  def initialize(task)
+    @task = task
+  end
+
+  def invoke
+    Rake::Task[task].invoke
   end
 
 end
