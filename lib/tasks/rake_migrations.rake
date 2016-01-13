@@ -1,7 +1,7 @@
 namespace :tasks do
 
   task :migrate => :environment do
-    Rake::Migrations.run_task_migrations
+    Rake::Migrations::Migrator.run_task_migrations
   end
 
 end
