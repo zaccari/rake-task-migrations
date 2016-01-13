@@ -1,3 +1,5 @@
+require 'rails'
+
 module Rake
   module Migrations
     class Engine < ::Rails::Engine
