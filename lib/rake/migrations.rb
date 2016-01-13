@@ -1,7 +1,12 @@
 require "rake/migrations/version"
+require "rake/migrations/engine"
 
 module Rake
   module Migrations
-    # Your code goes here...
+
+    def self.run_migrations
+      puts 'running migrations ...'
+    end
+
   end
 end

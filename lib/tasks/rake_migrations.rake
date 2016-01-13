@@ -1,7 +1,7 @@
 namespace :tasks do
 
   task :migrate => :environment do
-    puts 'hello world'
+    Rake::Migrations.run_migrations
   end
 
 end
