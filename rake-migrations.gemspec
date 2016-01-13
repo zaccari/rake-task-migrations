@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/mzaccari/rake-migrations"
   spec.license       = "MIT"
 
-  s.files = Dir["lib/**/*"] + ["LICENSE.txt", "Rakefile", "README.md"]
+  spec.files = Dir["lib/**/*"] + ["LICENSE.txt", "Rakefile", "README.md"]
 
   spec.add_development_dependency "rails", ">= 3.2"
 end
