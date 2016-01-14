@@ -1,5 +1,3 @@
-require 'rake'
-
 class Rake::Migrations::Migrator
 
   def self.run_task_migrations
@@ -31,8 +29,15 @@ class Rake::Migrations::Migrator
     @task = task
   end
 
+  # call task
+  # log to manifest
   def invoke
     Rake::Task[task].invoke
+    manifest.update(task)
+  end
+
+  def manifest
+    self.class.manifest
   end
 
 end

@@ -1,5 +1,7 @@
+require "rake"
 require "rake/migrations/version"
 require "rake/migrations/engine"
+require "yaml"
 
 module Rake
   module Migrations
