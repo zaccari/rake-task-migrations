@@ -32,12 +32,22 @@ class Rake::Migrations::Migrator
   # call task
   # log to manifest
   def invoke
-    Rake::Task[task].invoke
-    manifest.update(task)
+    with_handler do
+      Rake::Task[task].invoke
+    end
   end
 
   def manifest
     self.class.manifest
+  end
+
+  private
+
+  def with_handler(&block)
+    block.call
+    manifest.update(task)
+  rescue => e
+    # log error
   end
 
 end
