@@ -20,8 +20,6 @@ class Rake::Migrations::Configuration
     (config[:tasks] || []).each do |task|
       add_task Rake::Migrations::Task.new(*task)
     end
-
-    rescue Errno::ENOENT
   end
 
   def add_task(task)
