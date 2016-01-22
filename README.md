@@ -1,10 +1,10 @@
+<a href="https://codeclimate.com/github/mzaccari/rake-migrations"><img src="https://codeclimate.com/github/mzaccari/rake-migrations/badges/gpa.svg" /></a>
+
 # Rake::Migrations
 
 Heavily based on the `seed_migration` gem [found here](https://github.com/harrystech/seed_migration).
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rake/migrations`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+For rails projects that need to run tasks on deployment that don't quite fit in the `db:migrate` and `seed:migrate` categories, this gem lets you run configured rake tasks `once` or `every` time the command is run.
 
 ## Installation
 
@@ -34,7 +34,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rake-migrations.
+Bug reports and pull requests are welcome on GitHub at https://github.com/mzaccari/rake-migrations.
 
 
 ## License
