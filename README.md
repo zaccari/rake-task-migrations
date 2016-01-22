@@ -24,7 +24,58 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Given a set of rake tasks you might need to run on deployment:
+
+```ruby
+namespace :users do
+  # Run this only once
+  task :migrate_names => :environment do
+    User.find_each do |user|
+      user.update_attributes(name: "#{user.first_name} #{user.last_name}")
+    end
+  end
+end
+
+namespace :deployment do
+  # Run this on each deployment
+  task :restart_jboss => :environment do
+    FileUtils.touch(Rails.root.join('tmp', 'restart.txt'))
+  end
+end
+```
+
+Create a file at `config/tasks.yml` with your rake migration configuration:
+
+```yml
+tasks:
+  user_name_migration:
+    command: users:migrate_names
+    frequency: :once # default
+
+  restart_jboss:
+    command: deployment:restart_jboss
+    frequency: :every
+```
+
+Then run the migration for your configured rake tasks:
+
+```
+$ bundle exec rake tasks:migrate
+== user_name_migration: migrating =============================================
+== user_name_migration: migrated (0.0191s) ====================================
+== restart_jboss: migrating ===================================================
+== restart_jboss: migrated (0.0005s) ==========================================
+```
+
+Notice that the user name task should only be run once. If we re-run the rake task migration it will not be included:
+```
+$ bundle exec rake tasks:migrate
+== restart_jboss: migrating ===================================================
+== restart_jboss: migrated (0.0003s) ==========================================
+```
+
+
+
 
 ## Development
 
