@@ -20,14 +20,13 @@ class Rake::Migrations::Manifest
   end
 
   def update(task)
-    add_task(task)
-    save
+    add_task(task) && save
   end
 
   def load
-    manifest = YAML.load_file(file_path)
+    manifest = YAML.load_file(file_path).with_indifferent_access
     (manifest[:tasks] || []).each do |task|
-      add_task(task)
+      add_task Rake::Migrations::Task.new(*task)
     end
   rescue Errno::ENOENT
   end
@@ -38,7 +37,7 @@ class Rake::Migrations::Manifest
 
   def to_h
     {
-      tasks: tasks
+      tasks: tasks.map(&:name)
     }
   end
   alias_method :to_hash, :to_h

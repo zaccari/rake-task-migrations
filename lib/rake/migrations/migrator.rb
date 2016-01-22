@@ -8,7 +8,9 @@ class Rake::Migrations::Migrator
 
   # tasks to run every time + tasks that haven't been run yet
   def self.get_task_migrations
-    ['app:version']
+    config.tasks.select do |task|
+      task.run_every_time? || manifest.tasks.exclude?(task)
+    end
   end
 
   def self.manifest
@@ -29,11 +31,9 @@ class Rake::Migrations::Migrator
     @task = task
   end
 
-  # call task
-  # log to manifest
   def invoke
     with_handler do
-      Rake::Task[task].invoke
+      Rake::Task[task.command].invoke
     end
   end
 
@@ -44,10 +44,29 @@ class Rake::Migrations::Migrator
   private
 
   def with_handler(&block)
-    block.call
+    announce "migrating"
+
+    time = Benchmark.measure do
+      block.call
+    end
+
+    announce "migrated (%.4fs)" % time.real;
+
     manifest.update(task)
-  rescue => e
-    # log error
+  end
+
+  def write(text)
+    puts(text)
+  end
+
+  def say(message, subitem=false)
+    write "#{subitem ? "   ->" : "--"} #{message}"
+  end
+
+  def announce(message)
+    text = "#{task.name}: #{message}"
+    length = [0, 75 - text.length].max
+    write "== %s %s" % [text, "=" * length]
   end
 
 end
