@@ -24,12 +24,12 @@ Or install it yourself as:
 
 ## Usage
 
-Given a set of rake tasks you might need to run on deployment:
+Create the `lib/tasks/migrations.rake` file and add your tasks:
 
 ```ruby
-namespace :users do
+namespace :migrations do
   # Run this only once
-  task :migrate_names => :environment do
+  task :migrate_user_names => :environment do
     User.find_each do |user|
       user.update_attributes(name: "#{user.first_name} #{user.last_name}")
     end
@@ -38,21 +38,16 @@ end
 
 ```
 
-Create a file at `config/tasks.yml` with your rake migration configuration:
-
-```yml
-tasks:
-  user_name_migration:
-    command: users:migrate_names
-```
-
-Then run the migration for your configured rake tasks:
+Then run the migration for your rake tasks:
 
 ```
 $ bundle exec rake tasks:migrate
-== user_name_migration: migrating =============================================
-== user_name_migration: migrated (0.0191s) ====================================
+== migrate_user_names: migrating =============================================
+== migrate_user_names: migrated (0.0191s) ====================================
 ```
+
+Each rake task is run only once.
+
 
 ## Development
 
