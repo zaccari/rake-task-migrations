@@ -6,11 +6,9 @@ class Rake::Migrations::Migrator
     end
   end
 
-  # tasks to run every time + tasks that haven't been run yet
+  # tasks that haven't been run yet
   def self.get_task_migrations
-    config.tasks.select do |task|
-      task.run_every_time? || manifest.tasks.exclude?(task)
-    end
+    config.tasks.select { |task| manifest.tasks.exclude?(task) }
   end
 
   def self.manifest
