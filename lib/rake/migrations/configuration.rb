@@ -1,24 +1,25 @@
 class Rake::Migrations::Configuration
 
-  DEFAULT_FILE_PATH = Rails.root.join('config', 'tasks.yml')
+  DEFAULT_NAMESPACE = :migrations
 
-  def self.load(file_path = DEFAULT_FILE_PATH)
-    config = new(file_path)
+  def self.load(namespace = DEFAULT_NAMESPACE)
+    config = new(namespace)
     config.load
     config
   end
 
-  attr_reader :file_path, :tasks
+  attr_reader :namespace, :tasks
 
-  def initialize(file_path)
-    @file_path = file_path
-    @tasks = []
+  def initialize(namespace)
+    @namespace = namespace
+    @tasks     = []
   end
 
   def load
-    config = YAML.load_file(file_path).with_indifferent_access
-    (config[:tasks] || []).each do |task|
-      add_task Rake::Migrations::Task.new(*task)
+    Rake.application.in_namespace(namespace) do |namespace|
+      namespace.tasks.each do |task|
+        add_task Rake::Migrations::Task.new(task.name, command: task.name)
+      end
     end
   end
 
