@@ -10,6 +10,7 @@
 /tmp/
 /Gemfile.lock
 log
+*.sqlite3
 
 ## Specific to RubyMotion:
 .dat*
