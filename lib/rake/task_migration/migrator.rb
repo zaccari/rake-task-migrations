@@ -7,7 +7,7 @@ module Rake
         end
 
         def rake_task_migrations_table_name
-          RakeTaskMigration.table_name
+          Rake::TaskMigration.migration_table_name
         end
 
         def get_all_tasks(connection = ActiveRecord::Base.connection)
