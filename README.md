@@ -49,6 +49,25 @@ $ bundle exec rake tasks:migrate
 
 Each rake task is run only once.
 
+## Configuration
+
+Use an initializer file for configuration.
+
+### List of available configurations :
+
+- `migration_table_name (default = 'rake_task_migrations')`
+- `migration_namespace (default = :migrations)`
+
+#### Example:
+
+```ruby
+# config/initializers/rake_task_migration.rb
+
+Rake::TaskMigration.config do |config|
+  config.migration_table_name = 'table_name'
+  config.migration_namespace  = 'namespace'
+end
+```
 
 ## Development
 
