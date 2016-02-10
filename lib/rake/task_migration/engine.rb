@@ -1,10 +1,9 @@
 require 'rails'
 
 module Rake
-  module Migrations
+  module TaskMigration
     class Engine < ::Rails::Engine
-      isolate_namespace Rake::Migrations
-
+      isolate_namespace Rake::TaskMigration
     end
   end
 end

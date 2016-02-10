@@ -1,6 +1,6 @@
 <a href="https://codeclimate.com/github/mzaccari/rake-migrations"><img src="https://codeclimate.com/github/mzaccari/rake-migrations/badges/gpa.svg" /></a>
 
-# Rake::Migrations
+# Rake Task Migrations
 
 Heavily based on the `seed_migration` gem [found here](https://github.com/harrystech/seed_migration).
 
@@ -11,16 +11,19 @@ For rails projects that need to run tasks on deployment that don't quite fit in 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rake-migrations'
+gem 'rake-task-migration'
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Install and run the internal migrations
 
-    $ gem install rake-migrations
+    $ bundle exec rake task_migration:install:migrations
+    $ bundle exec rake db:migrate
+
+That will create the table to keep track of rake task migrations.
 
 ## Usage
 
@@ -28,14 +31,12 @@ Create the `lib/tasks/migrations.rake` file and add your tasks:
 
 ```ruby
 namespace :migrations do
-  # Run this only once
   task :migrate_user_names => :environment do
     User.find_each do |user|
       user.update_attributes(name: "#{user.first_name} #{user.last_name}")
     end
   end
 end
-
 ```
 
 Then run the migration for your rake tasks:
@@ -48,17 +49,33 @@ $ bundle exec rake tasks:migrate
 
 Each rake task is run only once.
 
+## Configuration
+
+Use an initializer file for configuration.
+
+### List of available configurations :
+
+- `migration_table_name (default = 'rake_task_migrations')`
+- `migration_namespace (default = :migrations)`
+
+#### Example:
+
+```ruby
+# config/initializers/rake_task_migration.rb
+
+Rake::TaskMigration.config do |config|
+  config.migration_table_name = 'table_name'
+  config.migration_namespace  = 'namespace'
+end
+```
 
 ## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/mzaccari/rake-migrations.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/mzaccari/rake-task-migrations.
 
 ## License
 
