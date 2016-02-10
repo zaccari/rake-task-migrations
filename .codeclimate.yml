@@ -1,0 +1,31 @@
+---
+engines:
+  brakeman:
+    enabled: true
+    exclude_fingerprints:
+      - 6ad4464dbb2a999591c7be8346dc137c3372b280f4a8b0c024fef91dfebeeb83
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+  fixme:
+    enabled: true
+    exclude_fingerprints:
+    - ee0a31701f95b21db4aff40647a56a3d
+    - b86af833d6b2b1fa18da63471e2278d9
+    - cdc1cac1f5cb7afe72dca9f9bca8a237
+  rubocop:
+    enabled: true
+    exclude_fingerprints:
+    - 1d8222c0a25a09e91e38b146e8d534c1
+    - e65818a0d07ee55eec35113f0c528996
+    - 1d8222c0a25a09e91e38b146e8d534c1
+ratings:
+  paths:
+  - Gemfile.lock
+  - "**.rb"
+  - "**.rake"
+exclude_paths:
+- db/
+- spec/

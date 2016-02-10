@@ -1,6 +1,8 @@
-<a href="https://codeclimate.com/github/mzaccari/rake-migrations"><img src="https://codeclimate.com/github/mzaccari/rake-migrations/badges/gpa.svg" /></a>
+[![Build Status](https://travis-ci.org/mzaccari/rake-task-migrations.svg?branch=master)](https://travis-ci.org/mzaccari/rake-task-migrations)
+[![Code Climate](https://codeclimate.com/github/mzaccari/rake-task-migrations/badges/gpa.svg)](https://codeclimate.com/github/mzaccari/rake-task-migrations)
+[![Test Coverage](https://codeclimate.com/github/mzaccari/rake-task-migrations/badges/coverage.svg)](https://codeclimate.com/github/mzaccari/rake-task-migrations/coverage)
 
-# Rake::Migrations
+# Rake Task Migrations
 
 Heavily based on the `seed_migration` gem [found here](https://github.com/harrystech/seed_migration).
 
@@ -11,16 +13,19 @@ For rails projects that need to run tasks on deployment that don't quite fit in 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rake-migrations'
+gem 'rake-task-migration'
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Install and run the internal migrations
 
-    $ gem install rake-migrations
+    $ bundle exec rake task_migration:install:migrations
+    $ bundle exec rake db:migrate
+
+That will create the table to keep track of rake task migrations.
 
 ## Usage
 
@@ -28,14 +33,12 @@ Create the `lib/tasks/migrations.rake` file and add your tasks:
 
 ```ruby
 namespace :migrations do
-  # Run this only once
   task :migrate_user_names => :environment do
     User.find_each do |user|
       user.update_attributes(name: "#{user.first_name} #{user.last_name}")
     end
   end
 end
-
 ```
 
 Then run the migration for your rake tasks:
@@ -48,17 +51,47 @@ $ bundle exec rake tasks:migrate
 
 Each rake task is run only once.
 
+## Configuration
 
-## Development
+Use an initializer file for configuration.
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### List of available configurations :
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+- `migration_table_name (default = 'rake_task_migrations')`
+- `migration_namespace (default = :migrations)`
+
+#### Example:
+
+```ruby
+# config/initializers/rake_task_migration.rb
+
+Rake::TaskMigration.config do |config|
+  config.migration_table_name = 'table_name'
+  config.migration_namespace  = 'namespace'
+end
+```
+
+## Runnings tests
+
+```bash
+export RAILS_ENV=test
+bundle exec rake app:db:create app:db:migrate
+bundle exec rspec spec
+```
+
+* Rubies: 1.9.3, 2.0, 2.1, 2.2, JRuby 1.7.x, JRuby 9.x
+* Rails: 3.2, 4.0, 4.1, 4.2
+* Databases: MySQL, SQLite, PostgreSQL
+
+For more information see the [travic-ci config](https://github.com/mzaccari/rake-task-migrations/blob/master/.travis.yml).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/mzaccari/rake-migrations.
-
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
 
 ## License
 

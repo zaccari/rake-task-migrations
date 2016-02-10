@@ -1,13 +1,15 @@
 source 'https://rubygems.org'
 
-gemspec
+gemspec path: '..'
+
+gem "rails", '~> 3.2.22'
 
 platforms :ruby, :mswin, :mingw do
   case ENV['DB']
   when 'postgresql'
     gem 'pg'
   when 'mysql'
-    gem 'mysql2'
+    gem 'mysql2', '~> 0.3.18'
   when 'sqlite'
     gem 'sqlite3'
   else

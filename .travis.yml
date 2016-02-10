@@ -1,4 +1,29 @@
+sudo: false
 language: ruby
+cache: bundler
 rvm:
-  - 2.2.3
-before_install: gem install bundler -v 1.10.6
+  - 1.9.3
+  - 2.0.0
+  - 2.1.0
+  - 2.2.2
+  - jruby-19mode
+  - jruby-head
+script:
+  - export RAILS_ENV=test
+  - bundle exec rake app:db:create app:db:migrate
+  - bundle exec rspec spec
+env:
+  - DB=mysql
+  - DB=sqlite
+  - DB=postgresql
+gemfile:
+  - gemfiles/Gemfile.rails-4.2-stable
+  - gemfiles/Gemfile.rails-4.1-stable
+  - gemfiles/Gemfile.rails-4.0-stable
+  - gemfiles/Gemfile.rails-3.2-stable
+  - Gemfile
+
+addons:
+  code_climate:
+    repo_token:
+      secure: "d4nfG6RMFOeUq+p0tEJhtW8mTDpZRj0v+bKZUekhKNnMlWbmSLNL09nG1sQM5qRTlIdvW+UZEohWe4aa20EuJa347KIjIgsXT/hYrdgAKNdSSqb/oQLdDhrA/AdQN50jaoYoOvMDOyezHlKhoRI4YR/5AVGAC9mST6UB7Vio5mupblsZ/pFe8D/m8CDRO7CXw4O/J3qR8GkhE5L4WzhssFIDMkeFS32ee9ZDFGImZMWL6JqmqMWyT+kDjWlW7ndD3QswPe7LLAees5zf9cYCNTHP1hMyad1NedPY4+iIZnbqS2BEf21KMptTNymAT+jsP0tKMq/xYDtNJ/jiElbSQEzDYGzb9OdqwzsY8jHNYveLbzygxeSwwVqMnQhYFuZFkqXICyBY71YyUFLAgWD7uu43uTL/TL+b8l57WUE3Ors3SPsUV3pLbN32dDdH/7/pwKssDEXvApmCKet24EgnWHpwCaV6e2LFFroa4vIYsMfCncKrODDcU5fjfaVJfHQfNAJTx2gA0xVqRgmnCGkgllw5SNn5t5AmPUBUZvKkbPN3pJ9j5+ooY1gZWGwb8/CUDJtL06wSaMsQXRYiwbAy79jPjZivhxFuLEyfww2uOu1+zeCixc3H5nqBKcufa0sTVox7Fdzxch/oVVrATG8sGkryQiGTih1+Ti/spHYWNp8="
