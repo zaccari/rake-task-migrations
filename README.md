@@ -1,6 +1,5 @@
 <a href="https://codeclimate.com/github/mzaccari/rake-task-migrations"><img src="https://codeclimate.com/github/mzaccari/rake-task-migrations/badges/gpa.svg" /></a>
 <a href="https://codeclimate.com/github/mzaccari/rake-task-migrations/coverage"><img src="https://codeclimate.com/github/mzaccari/rake-task-migrations/badges/coverage.svg" /></a>
-<a href="https://codeclimate.com/github/mzaccari/rake-task-migrations"><img src="https://codeclimate.com/github/mzaccari/rake-task-migrations/badges/issue_count.svg" /></a>
 
 # Rake Task Migrations
 
