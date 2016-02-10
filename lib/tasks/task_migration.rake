@@ -1,9 +1,7 @@
 namespace :tasks do
-
   task :migrate => :environment do
     Rake::TaskMigration.migrate
   end
-
 end
 
 namespace :task_migration do

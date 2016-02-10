@@ -27,7 +27,7 @@ module Rake
       end
 
       def with_namespace
-        Rake.application.in_namespace(self.migration_namespace) do |namespace|
+        Rake.application.in_namespace(migration_namespace) do |namespace|
           yield namespace if block_given?
         end
       end
