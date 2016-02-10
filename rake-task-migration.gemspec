@@ -15,7 +15,6 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
 
   spec.files         = Dir["{app,db,lib}/**/*"] + ["LICENSE.txt", "Rakefile", "README.md"]
-  spec.require_paths = ["lib"]
 
   spec.add_dependency 'rails', ['>= 3.2', '< 6']
 end
