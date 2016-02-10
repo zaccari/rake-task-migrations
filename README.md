@@ -1,4 +1,4 @@
-<a href="https://codeclimate.com/github/mzaccari/rake-migrations"><img src="https://codeclimate.com/github/mzaccari/rake-migrations/badges/gpa.svg" /></a>
+<a href="https://codeclimate.com/github/mzaccari/rake-task-migrations"><img src="https://codeclimate.com/github/mzaccari/rake-task-migrations/badges/gpa.svg" /></a>
 
 # Rake Task Migrations
 
