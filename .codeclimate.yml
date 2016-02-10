@@ -15,6 +15,7 @@ ratings:
   paths:
   - Gemfile.lock
   - "**.rb"
+  - "**.rake"
 exclude_paths:
 - db/
 - spec/
