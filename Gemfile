@@ -16,6 +16,7 @@ group :test do
   gem 'factory_girl', '>= 4.2'
   gem 'rspec-rails', '>= 2.14'
   gem 'rubocop', '~> 0.31.0'
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 gemspec
