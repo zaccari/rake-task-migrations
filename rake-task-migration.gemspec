@@ -1,4 +1,4 @@
-# coding: utf-8
+# -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'rake/task_migration/version'
@@ -15,7 +15,6 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
 
   spec.files         = Dir["{app,db,lib}/**/*"] + ["LICENSE.txt", "Rakefile", "README.md"]
-  spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "rails", ">= 3.2"
+  spec.add_dependency 'rails', ['>= 3.2', '< 6']
 end

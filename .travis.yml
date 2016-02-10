@@ -1,4 +1,28 @@
+sudo: false
 language: ruby
+cache: bundler
 rvm:
-  - 2.2.3
-before_install: gem install bundler -v 1.10.6
+  - 2.0.0
+  - 2.1.0
+  - 2.2.2
+script:
+  - export RAILS_ENV=test
+  - bundle exec rake app:db:create app:db:migrate
+  - bundle exec rspec spec
+env:
+  - THREADSAFE=true DB=mysql
+  - THREADSAFE=false DB=mysql
+  - THREADSAFE=true DB=sqlite
+  - THREADSAFE=false DB=sqlite
+  - THREADSAFE=true DB=postgresql
+  - THREADSAFE=false DB=postgresql
+gemfile:
+  - gemfiles/Gemfile.rails-4.2-stable
+  - gemfiles/Gemfile.rails-4.1-stable
+  - gemfiles/Gemfile.rails-4.0-stable
+  - gemfiles/Gemfile.rails-3.2-stable
+  - Gemfile
+
+addons:
+    code_climate:
+        repo_token: 8773622c93a4cf0ba78e1b3b686bffbb045a151ac426be88a2021a4c158b7b7a

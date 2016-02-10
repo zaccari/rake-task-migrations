@@ -7,12 +7,15 @@ module Rake
   module TaskMigration
     autoload :Migrator, 'rake/task_migration/migrator'
 
+    DEFAULT_TABLE_NAME = 'rake_task_migrations'
+    DEFAULT_NAMESPACE  = :migrations
+
     class << self
       mattr_accessor :migration_table_name
       mattr_accessor :migration_namespace
 
-      self.migration_table_name = 'rake_task_migrations'
-      self.migration_namespace  = :migrations
+      self.migration_table_name = DEFAULT_TABLE_NAME
+      self.migration_namespace  = DEFAULT_NAMESPACE
 
       def config
         yield self
@@ -27,7 +30,7 @@ module Rake
       end
 
       def with_namespace
-        Rake.application.in_namespace(self.migration_namespace) do |namespace|
+        Rake.application.in_namespace(migration_namespace) do |namespace|
           yield namespace if block_given?
         end
       end
