@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gemspec
+
 case ENV['DB']
 when 'postgresql'
   gem 'pg'
@@ -18,5 +20,3 @@ group :test do
   gem 'rubocop', '~> 0.31.0'
   gem 'codeclimate-test-reporter', require: nil
 end
-
-gemspec
