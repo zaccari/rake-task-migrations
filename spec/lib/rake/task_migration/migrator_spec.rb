@@ -49,30 +49,6 @@ describe Rake::TaskMigration::Migrator do
     end
   end
 
-  describe '.rake_task_migrations_table_name' do
-    context 'with the default table name' do
-      it 'it returns the default table name' do
-        expect(subject.rake_task_migrations_table_name).to eq Rake::TaskMigration::DEFAULT_TABLE_NAME
-      end
-    end
-
-    context 'with a custom table name' do
-      let(:custom_table_name) { 'foo_table' }
-
-      before do
-        Rake::TaskMigration.migration_table_name = custom_table_name
-      end
-
-      after do
-        Rake::TaskMigration.migration_table_name = Rake::TaskMigration::DEFAULT_TABLE_NAME
-      end
-
-      it 'it returns the custom table name' do
-        expect(subject.rake_task_migrations_table_name).to eq custom_table_name
-      end
-    end
-  end
-
   describe '.get_all_tasks' do
     it 'returns a list of tasks already migrated' do
       tasks = FactoryGirl.create_list(:rake_task_migration, 2).map(&:version)

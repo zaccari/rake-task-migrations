@@ -6,10 +6,6 @@ module Rake
           new(tasks).migrate
         end
 
-        def rake_task_migrations_table_name
-          Rake::TaskMigration.migration_table_name
-        end
-
         def get_all_tasks
           RakeTaskMigration.all.map { |x| x.version.to_s }.sort
         end
