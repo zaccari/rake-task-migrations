@@ -38,11 +38,7 @@ module Rake
           migration.version = task
           migration.runtime = time.real.to_i
           migration.migrated_on = DateTime.now
-          begin
-            migration.save!
-          rescue StandardError => e
-            puts e
-          end
+          migration.save!
 
           announce "#{task}: migrated (#{format('%.4fs', time.real)})"
         end
