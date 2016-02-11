@@ -10,14 +10,8 @@ module Rake
           Rake::TaskMigration.migration_table_name
         end
 
-        def get_all_tasks(connection = ActiveRecord::Base.connection)
-          ActiveSupport::Deprecation.silence do
-            if connection.table_exists?(rake_task_migrations_table_name)
-              RakeTaskMigration.all.map { |x| x.version.to_s }.sort
-            else
-              []
-            end
-          end
+        def get_all_tasks
+          RakeTaskMigration.all.map { |x| x.version.to_s }.sort
         end
       end
 
