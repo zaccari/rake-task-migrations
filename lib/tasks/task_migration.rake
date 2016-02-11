@@ -1,3 +1,4 @@
+#:nocov:
 namespace :tasks do
   task migrate: :environment do
     Rake::TaskMigration.migrate
@@ -11,3 +12,4 @@ namespace :task_migration do
     end
   end
 end
+#:nocov:
