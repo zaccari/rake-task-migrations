@@ -71,13 +71,18 @@ Rake::TaskMigration.config do |config|
 end
 ```
 
-## Development
+## Supported Versions
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+* Ruby 2.0, 2.1, 2.2
+* Rails 3.2, 4.0, 4.1, 4.2
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/mzaccari/rake-task-migrations.
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
 
 ## License
 
