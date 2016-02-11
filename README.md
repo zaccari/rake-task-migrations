@@ -76,6 +76,7 @@ end
 
 ```bash
 export RAILS_ENV=test
+export DB=mysql # or sqlite, postgresql
 bundle exec rake app:db:create app:db:migrate
 bundle exec rspec spec
 ```
