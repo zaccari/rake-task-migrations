@@ -1,5 +1,5 @@
-<a href="https://codeclimate.com/github/mzaccari/rake-task-migrations"><img src="https://codeclimate.com/github/mzaccari/rake-task-migrations/badges/gpa.svg" /></a>
-<a href="https://codeclimate.com/github/mzaccari/rake-task-migrations/coverage"><img src="https://codeclimate.com/github/mzaccari/rake-task-migrations/badges/coverage.svg" /></a>
+[![Code Climate](https://codeclimate.com/github/mzaccari/rake-task-migrations/badges/gpa.svg)](https://codeclimate.com/github/mzaccari/rake-task-migrations)
+[![Test Coverage](https://codeclimate.com/github/mzaccari/rake-task-migrations/badges/coverage.svg)](https://codeclimate.com/github/mzaccari/rake-task-migrations/coverage)
 [![Build Status](https://travis-ci.org/mzaccari/rake-task-migrations.svg?branch=master)](https://travis-ci.org/mzaccari/rake-task-migrations)
 
 # Rake Task Migrations
