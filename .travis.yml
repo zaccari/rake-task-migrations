@@ -2,7 +2,7 @@ sudo: false
 language: ruby
 cache: bundler
 rvm:
-  # - 2.0.0
+  - 2.0.0
   - 2.1.0
   - 2.2.2
 script:
@@ -12,10 +12,10 @@ script:
 env:
   - THREADSAFE=true DB=mysql
   - THREADSAFE=false DB=mysql
-  # - THREADSAFE=true DB=sqlite
-  # - THREADSAFE=false DB=sqlite
-  # - THREADSAFE=true DB=postgresql
-  # - THREADSAFE=false DB=postgresql
+  - THREADSAFE=true DB=sqlite
+  - THREADSAFE=false DB=sqlite
+  - THREADSAFE=true DB=postgresql
+  - THREADSAFE=false DB=postgresql
 gemfile:
   - gemfiles/Gemfile.rails-4.2-stable
   - gemfiles/Gemfile.rails-4.1-stable
