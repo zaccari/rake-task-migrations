@@ -11,10 +11,10 @@ module Rake
     DEFAULT_NAMESPACE  = :migrations
 
     mattr_accessor :migration_table_name
-    @@migration_table_name = DEFAULT_TABLE_NAME
+    self.migration_table_name = DEFAULT_TABLE_NAME
 
     mattr_accessor :migration_namespace
-    @@migration_namespace  = DEFAULT_NAMESPACE
+    self.migration_namespace  = DEFAULT_NAMESPACE
 
     class << self
       def config

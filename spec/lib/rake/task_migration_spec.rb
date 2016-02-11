@@ -37,4 +37,24 @@ describe Rake::TaskMigration do
       expect { |b| subject.config(&b) }.to yield_control
     end
   end
+
+  describe 'configuration variables' do
+    after do
+      Rake::TaskMigration.migration_table_name = Rake::TaskMigration::DEFAULT_TABLE_NAME
+    end
+
+    it 'does not conflict with variables in other modules' do
+      module Foo
+        class << self
+          mattr_accessor :migration_table_name
+        end
+      end
+
+      Foo.migration_table_name = 'foos'
+      Rake::TaskMigration.migration_table_name = 'bars'
+
+      expect(Foo.migration_table_name).to eq 'foos'
+      expect(Rake::TaskMigration.migration_table_name).to eq 'bars'
+    end
+  end
 end
