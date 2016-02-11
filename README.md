@@ -1,3 +1,4 @@
+[![Gem Version](https://badge.fury.io/rb/rake-task-migration.svg)](https://badge.fury.io/rb/rake-task-migration)
 [![Build Status](https://travis-ci.org/mzaccari/rake-task-migrations.svg?branch=master)](https://travis-ci.org/mzaccari/rake-task-migrations)
 [![Code Climate](https://codeclimate.com/github/mzaccari/rake-task-migrations/badges/gpa.svg)](https://codeclimate.com/github/mzaccari/rake-task-migrations)
 [![Test Coverage](https://codeclimate.com/github/mzaccari/rake-task-migrations/badges/coverage.svg)](https://codeclimate.com/github/mzaccari/rake-task-migrations/coverage)
