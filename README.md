@@ -71,6 +71,14 @@ Rake::TaskMigration.config do |config|
 end
 ```
 
+## Runnings tests
+
+```bash
+export RAILS_ENV=test
+bundle exec rake app:db:create app:db:migrate
+bundle exec rspec spec
+```
+
 ## Supported Versions
 
 * Ruby 2.0, 2.1, 2.2
