@@ -11,7 +11,7 @@ script:
   - bundle exec rspec spec
 env:
   - THREADSAFE=true DB=mysql
-  # - THREADSAFE=false DB=mysql
+  - THREADSAFE=false DB=mysql
   # - THREADSAFE=true DB=sqlite
   # - THREADSAFE=false DB=sqlite
   # - THREADSAFE=true DB=postgresql
