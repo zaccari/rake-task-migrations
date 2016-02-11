@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.description   = 'Rails gem for rake task migrations'
   spec.summary       = 'Rake Task Migrations'
-  spec.homepage      = 'https://github.com/mzaccari/rake-task-migration'
+  spec.homepage      = 'https://github.com/mzaccari/rake-task-migrations'
   spec.license       = 'MIT'
 
   spec.files         = Dir['{app,db,lib}/**/*'] + ['LICENSE.txt', 'Rakefile', 'README.md']
