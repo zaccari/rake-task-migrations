@@ -10,13 +10,13 @@ module Rake
     DEFAULT_TABLE_NAME = 'rake_task_migrations'
     DEFAULT_NAMESPACE  = :migrations
 
+    mattr_accessor :migration_table_name
+    @@migration_table_name = DEFAULT_TABLE_NAME
+
+    mattr_accessor :migration_namespace
+    @@migration_namespace  = DEFAULT_NAMESPACE
+
     class << self
-      mattr_accessor :migration_table_name
-      mattr_accessor :migration_namespace
-
-      self.migration_table_name = DEFAULT_TABLE_NAME
-      self.migration_namespace  = DEFAULT_NAMESPACE
-
       def config
         yield self
       end
