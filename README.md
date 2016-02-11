@@ -42,7 +42,7 @@ namespace :migrations do
 end
 ```
 
-Then run the migration for your rake tasks:
+Then run the migration task:
 
 ```
 $ bundle exec rake tasks:migrate
