@@ -1,5 +1,6 @@
 <a href="https://codeclimate.com/github/mzaccari/rake-task-migrations"><img src="https://codeclimate.com/github/mzaccari/rake-task-migrations/badges/gpa.svg" /></a>
 <a href="https://codeclimate.com/github/mzaccari/rake-task-migrations/coverage"><img src="https://codeclimate.com/github/mzaccari/rake-task-migrations/badges/coverage.svg" /></a>
+[![Build Status](https://travis-ci.org/mzaccari/rake-task-migrations.svg?branch=master)](https://travis-ci.org/mzaccari/rake-task-migrations)
 
 # Rake Task Migrations
 
