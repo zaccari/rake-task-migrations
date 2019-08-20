@@ -21,7 +21,7 @@ describe Rake::TaskMigration::Migrator do
     context 'when the tasks have already been migrated' do
       before do
         tasks.each do |task|
-          FactoryGirl.create(:rake_task_migration, version: task.name)
+          FactoryBot.create(:rake_task_migration, version: task.name)
         end
       end
 
@@ -51,7 +51,7 @@ describe Rake::TaskMigration::Migrator do
 
   describe '.get_all_tasks' do
     it 'returns a list of tasks already migrated' do
-      tasks = FactoryGirl.create_list(:rake_task_migration, 2).map(&:version)
+      tasks = FactoryBot.create_list(:rake_task_migration, 2).map(&:version)
       expect(subject.get_all_tasks).to eq tasks.sort
     end
   end

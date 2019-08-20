@@ -2,12 +2,8 @@ sudo: false
 language: ruby
 cache: bundler
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.0
-  - 2.2.2
-  - jruby-19mode
-  - jruby-head
+  - 2.5
+  - 2.6
 script:
   - export RAILS_ENV=test
   - bundle exec rake app:db:create app:db:migrate
@@ -17,11 +13,14 @@ env:
   - DB=sqlite
   - DB=postgresql
 gemfile:
-  - gemfiles/Gemfile.rails-4.2-stable
-  - gemfiles/Gemfile.rails-4.1-stable
-  - gemfiles/Gemfile.rails-4.0-stable
-  - gemfiles/Gemfile.rails-3.2-stable
+  - gemfiles/Gemfile.rails-5.0-stable
+  - gemfiles/Gemfile.rails-5.1-stable
+  - gemfiles/Gemfile.rails-5.2-stable
+  - gemfiles/Gemfile.rails-6.0-stable
   - Gemfile
+services:
+  - postgresql
+  - mysql
 
 addons:
   code_climate:

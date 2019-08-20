@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gemspec
+gemspec path: '..'
+
+gem "rails", '~> 5.2'
 
 platforms :ruby, :mswin, :mingw do
   case ENV['DB']
