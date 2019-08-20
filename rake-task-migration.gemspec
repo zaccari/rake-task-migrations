@@ -16,6 +16,6 @@ Gem::Specification.new do |spec|
 
   spec.files         = Dir['{app,db,lib}/**/*'] + ['LICENSE.txt', 'Rakefile', 'README.md']
 
-  spec.add_dependency 'rails', ['>= 3.2', '< 6']
+  spec.add_dependency 'rails', ['>= 3.2']
   spec.add_development_dependency 'test-unit', '~> 3.0'
 end

@@ -36,7 +36,7 @@ Metrics/ParameterLists:
 Metrics/PerceivedComplexity:
   Max: 7
 
-Style/AccessModifierIndentation:
+Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 
 Style/CollectionMethods:
@@ -49,7 +49,7 @@ Style/CollectionMethods:
 Style/Documentation:
   Enabled: false
 
-Style/DotPosition:
+Layout/DotPosition:
   EnforcedStyle: trailing
 
 Style/DoubleNegation:
@@ -61,7 +61,7 @@ Style/EachWithObject:
 Style/Encoding:
   Enabled: false
 
-Style/FileName:
+Naming/FileName:
   Exclude:
     - 'lib/rake-task-migration.rb'
 
@@ -71,9 +71,15 @@ Style/Lambda:
 Style/RaiseArgs:
   EnforcedStyle: compact
 
-Style/SpaceInsideHashLiteralBraces:
+Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
-Style/TrailingComma:
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: 'comma'
+
+Style/TrailingCommaInArrayLiteranl:
+  EnforcedStyleForMultiline: 'comma'
+
+Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: 'comma'
 
