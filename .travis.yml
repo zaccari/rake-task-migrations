@@ -4,10 +4,6 @@ cache: bundler
 rvm:
   - 2.5
   - 2.6
-script:
-  - export RAILS_ENV=test
-  - bundle exec rake app:db:create app:db:migrate
-  - bundle exec rspec spec
 env:
   - DB=mysql
   - DB=sqlite
@@ -21,8 +17,17 @@ gemfile:
 services:
   - postgresql
   - mysql
-
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script:
+  - export RAILS_ENV=test
+  - bundle exec rake app:db:create app:db:migrate
+  - bundle exec rspec spec
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 addons:
   code_climate:
     repo_token:
-      secure: "d4nfG6RMFOeUq+p0tEJhtW8mTDpZRj0v+bKZUekhKNnMlWbmSLNL09nG1sQM5qRTlIdvW+UZEohWe4aa20EuJa347KIjIgsXT/hYrdgAKNdSSqb/oQLdDhrA/AdQN50jaoYoOvMDOyezHlKhoRI4YR/5AVGAC9mST6UB7Vio5mupblsZ/pFe8D/m8CDRO7CXw4O/J3qR8GkhE5L4WzhssFIDMkeFS32ee9ZDFGImZMWL6JqmqMWyT+kDjWlW7ndD3QswPe7LLAees5zf9cYCNTHP1hMyad1NedPY4+iIZnbqS2BEf21KMptTNymAT+jsP0tKMq/xYDtNJ/jiElbSQEzDYGzb9OdqwzsY8jHNYveLbzygxeSwwVqMnQhYFuZFkqXICyBY71YyUFLAgWD7uu43uTL/TL+b8l57WUE3Ors3SPsUV3pLbN32dDdH/7/pwKssDEXvApmCKet24EgnWHpwCaV6e2LFFroa4vIYsMfCncKrODDcU5fjfaVJfHQfNAJTx2gA0xVqRgmnCGkgllw5SNn5t5AmPUBUZvKkbPN3pJ9j5+ooY1gZWGwb8/CUDJtL06wSaMsQXRYiwbAy79jPjZivhxFuLEyfww2uOu1+zeCixc3H5nqBKcufa0sTVox7Fdzxch/oVVrATG8sGkryQiGTih1+Ti/spHYWNp8="
+      secure: "UMX9qWam4bFUsJSqjFMPTSxEb5IhChT7XyEpOvMRNitOBt/vel2BNlJHWsJI7eB51SMcsdE5dKgnB465qYYO8VS5Fhw9ro3EeBT6daceRBjgpb2RUIHefiGlbYqlBDILBkolImQuQb57FEHP7fZu59dF98p0ApRepvlE2nQQ7mYe4qcSoNll/ufmeMsKPhtgHo+XTSZXrCSMqv6UC1nquP75o5AIvBoYpvS9wbk3GaaII2S90I7Nrxp0ocHXxV/Ws8GgkUPnJjv5vYaP7C2E3M3eocdie7OoMjhFMc6efsFISkX8RfcZ/McB4ivfYQazojIZ00N+47yIOz/YHpyHfH7xuo6Yeh+obpLhhXL8dLs+6yQwOiq0t7yLl2B4nKpZzQkN4S/IpUbJansUsZKS1sY8SUG2fX5Wif7hywx4aVOlQZJmzywIupoeh9IkBNPiSZ5I7VITlz/NeSWBciK8hpUr14eduGS0sZKNMi7cFYaQ4VMIATEZgRmdX9OmxztwYIOcYd3YNti5zz84nf+VCaKKBw7KCldM2F98W2xj7YPP2j0/iP+tOc6EKXLfloWUrSLM1CcxDy47zLNWjzspp0J1R8i52ZVqM7vfkD/P64TuZI7DvZHaeJGYp0gjUfNEREsCR9VdyXVcaGxQH9Zwv/T81ofFr3QS724kbB/E7cI="
