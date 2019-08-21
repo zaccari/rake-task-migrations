@@ -2,32 +2,33 @@ sudo: false
 language: ruby
 cache: bundler
 rvm:
-  - 2.5
-  - 2.6
+- 2.5
+- 2.6
 env:
+  matrix:
   - DB=mysql
   - DB=sqlite
   - DB=postgresql
+  global:
+    secure: dmT9iNPQJ8HgjUWMar3snqmuH7D3xdsJmKLkAXuCKVsKdHDBq+rlITguDyoHREsXN8K+fQrnCBoPv1P4SQ9SRnBeIcMKgx+OTc1uNJJgVtVDOFrwc7VEgHyV4R7MOK7fFhT5boDZEHsZbX0qsKfu68+60z53Opooq9Mj5q/AukgWzN5maphzFAbYqye60k5QKBDIVaUYnpsCfNfoCop1fmLDMOt4Lodcq6e6jNRa1DLeyn6m0JBOjT711inTbIH2+dyHM7gSdusOKtFg4MX09Oi98Gfa1lZFHZsT8vpGZ6TohgKLl2mx0u7kKidBiuPCzRVbk59ZU5YcwB7gO9OMMw3rkc04TTj9GXxGPfZz7Rv1E+U6NK4S4ywezJnjfRQuvOQp5aSt8MV7piLzaZWUHG7eKqoOjE3X+6BIYG3YQ42+tP2+5/92rLsK+B/U+sF5d2XBkIqnG5fBE/AkI89kCPAl8wbfFxPm6G/t59ID5gprEKTXCNhQ3hZX+iB/GODDnlB5iF+N3av5LExTm3e1tDloV5oUYVNXLrs45F58hb4I0K+sCj60UoH90IncfdjphvLvTpVpxmaVO22E/a66Ei+6SbbTdK+7eBEBCdudWRtxtH3whop6P1+6QjzrIL7rU/elJJPaWyneC6gWnF3e2g0G2UWVWZdgwAKhut8fFwY=
 gemfile:
-  - gemfiles/Gemfile.rails-5.0-stable
-  - gemfiles/Gemfile.rails-5.1-stable
-  - gemfiles/Gemfile.rails-5.2-stable
-  - gemfiles/Gemfile.rails-6.0-stable
-  - Gemfile
+- gemfiles/Gemfile.rails-5.0-stable
+- gemfiles/Gemfile.rails-5.1-stable
+- gemfiles/Gemfile.rails-5.2-stable
+- gemfiles/Gemfile.rails-6.0-stable
+- Gemfile
 services:
-  - postgresql
-  - mysql
+- postgresql
+- mysql
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 script:
-  - export RAILS_ENV=test
-  - bundle exec rake app:db:create app:db:migrate
-  - bundle exec rspec spec
+- export RAILS_ENV=test
+- bundle exec rake app:db:create app:db:migrate
+- bundle exec rspec spec
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-addons:
-  code_climate:
-    repo_token:
-      secure: "UMX9qWam4bFUsJSqjFMPTSxEb5IhChT7XyEpOvMRNitOBt/vel2BNlJHWsJI7eB51SMcsdE5dKgnB465qYYO8VS5Fhw9ro3EeBT6daceRBjgpb2RUIHefiGlbYqlBDILBkolImQuQb57FEHP7fZu59dF98p0ApRepvlE2nQQ7mYe4qcSoNll/ufmeMsKPhtgHo+XTSZXrCSMqv6UC1nquP75o5AIvBoYpvS9wbk3GaaII2S90I7Nrxp0ocHXxV/Ws8GgkUPnJjv5vYaP7C2E3M3eocdie7OoMjhFMc6efsFISkX8RfcZ/McB4ivfYQazojIZ00N+47yIOz/YHpyHfH7xuo6Yeh+obpLhhXL8dLs+6yQwOiq0t7yLl2B4nKpZzQkN4S/IpUbJansUsZKS1sY8SUG2fX5Wif7hywx4aVOlQZJmzywIupoeh9IkBNPiSZ5I7VITlz/NeSWBciK8hpUr14eduGS0sZKNMi7cFYaQ4VMIATEZgRmdX9OmxztwYIOcYd3YNti5zz84nf+VCaKKBw7KCldM2F98W2xj7YPP2j0/iP+tOc6EKXLfloWUrSLM1CcxDy47zLNWjzspp0J1R8i52ZVqM7vfkD/P64TuZI7DvZHaeJGYp0gjUfNEREsCR9VdyXVcaGxQH9Zwv/T81ofFr3QS724kbB/E7cI="
+- "./cc-test-reporter format-coverage -t simplecov -o coverage/codeclimate.json coverage/.resultset.json"
+- if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter upload-coverage; fi
