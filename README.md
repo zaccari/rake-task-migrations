@@ -81,11 +81,11 @@ bundle exec rake app:db:create app:db:migrate
 bundle exec rspec spec
 ```
 
-* Rubies: 1.9.3, 2.0, 2.1, 2.2, JRuby 1.7.x, JRuby 9.x
-* Rails: 3.2, 4.0, 4.1, 4.2
+* Rubies: 2.5, 2.6
+* Rails: 5.0, 5.1, 5.2, 6.0
 * Databases: MySQL, SQLite, PostgreSQL
 
-For more information see the [travic-ci config](https://github.com/mzaccari/rake-task-migrations/blob/master/.travis.yml).
+For more information see the [travic-ci config](https://github.com/zaccari/rake-task-migrations/blob/master/.travis.yml).
 
 ## Contributing
 
