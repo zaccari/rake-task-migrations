@@ -30,10 +30,14 @@ That will create the table to keep track of rake task migrations.
 
 ## Usage
 
-Create the `lib/tasks/migrations.rake` file and add your tasks:
+Create the `lib/tasks/#{timestamp}_migration_namespace.rake` file using command:
+
+    $ bundle exec rake tasks:generate migration_namespace
+
+and add your tasks:
 
 ```ruby
-namespace :migrations do
+namespace :migration_namespace do
   task :migrate_user_names => :environment do
     User.find_each do |user|
       user.update_attributes(name: "#{user.first_name} #{user.last_name}")

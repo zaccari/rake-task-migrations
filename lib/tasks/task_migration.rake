@@ -7,7 +7,7 @@ namespace :tasks do
   desc 'Generate an empty task file with timestamp, Usage => rake tasks:create task_name'
   task generate: :environment do
     argument = ARGV[1]
-    task_name = "#{argument}_#{Time.now.to_formatted_s(:number)}.rake"
+    task_name = "#{Time.now.to_formatted_s(:number)}_#{argument}.rake"
     puts "#{task_name}: generating"
     task_path = "lib/tasks/migrations/#{task_name}"
     FileUtils.touch(task_path)
