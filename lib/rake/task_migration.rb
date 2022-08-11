@@ -16,6 +16,9 @@ module Rake
     mattr_accessor :migration_namespace
     self.migration_namespace  = DEFAULT_NAMESPACE
 
+    mattr_accessor :wrap_migrations_in_transaction
+    self.wrap_migrations_in_transaction = true
+
     class << self
       def config
         yield self
