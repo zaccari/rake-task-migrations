@@ -61,6 +61,7 @@ Use an initializer file for configuration.
 - `migration_table_name (default = 'rake_task_migrations')`
 - `migration_namespace (default = :migrations)`
 - `wrap_migrations_in_transaction (default = true)`
+
 #### Example:
 
 ```ruby
