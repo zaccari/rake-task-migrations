@@ -60,6 +60,7 @@ Use an initializer file for configuration.
 
 - `migration_table_name (default = 'rake_task_migrations')`
 - `migration_namespace (default = :migrations)`
+- `wrap_migrations_in_transaction (default = true)`
 
 #### Example:
 
@@ -69,6 +70,7 @@ Use an initializer file for configuration.
 Rake::TaskMigration.config do |config|
   config.migration_table_name = 'table_name'
   config.migration_namespace  = 'namespace'
+  config.wrap_migrations_in_transaction = false
 end
 ```
 

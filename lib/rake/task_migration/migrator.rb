@@ -28,7 +28,7 @@ module Rake
 
         announce "#{task}: migrating"
 
-        ActiveRecord::Base.transaction do
+        with_optional_transaction_wrapper do
           time = Benchmark.measure do
             invoke(task)
           end
@@ -41,6 +41,14 @@ module Rake
           migration.save!
 
           announce "#{task}: migrated (#{format('%.4fs', time.real)})"
+        end
+      end
+
+      def with_optional_transaction_wrapper
+        if Rake::TaskMigration.wrap_migrations_in_transaction
+          ActiveRecord::Base.transaction { yield }
+        else
+          yield
         end
       end
 
